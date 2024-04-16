@@ -1,0 +1,120 @@
+{
+"name": "Mountain Hiking Adventure",
+"price": 150,
+"rating": 4.5,
+"author": "John Doe"
+}
+{
+"name": "Beach Camping Trip",
+"price": 100,
+"rating": 4.2,
+"author": "Anonymous"
+}
+{
+"name": "City Walking Tour",
+"price": 50,
+"rating": 4.0,
+"author": "Jane Smith"
+}
+{
+"name": "Wildlife Safari Expedition",
+"price": 200,
+"rating": 4.8,
+"author": "Anonymous"
+}
+{
+"name": "Historical Sites Exploration",
+"price": 120,
+"rating": 4.3,
+"author": "Michael Johnson"
+}
+{
+"name": "Cultural Immersion Experience",
+"price": 180,
+"rating": 4.7,
+"author": "Anonymous"
+}
+{
+"name": "Adventure Sports Weekend",
+"price": 250,
+"rating": 4.9,
+"author": "Anonymous"
+}
+{
+"name": "Wine Tasting Tour",
+"price": 80,
+"rating": 4.1,
+"author": "Sarah Brown"
+}
+{
+"name": "Volcano Exploration Trip",
+"price": 300,
+"rating": 4.6,
+"author": "Anonymous"
+}
+{
+"name": "Desert Camping Experience",
+"price": 120,
+"rating": 4.4,
+"author": "Anonymous"
+}
+{
+"name": "Art Gallery Tour",
+"price": 70,
+"rating": 4.0,
+"author": "Anonymous"
+}
+{
+"name": "Whale Watching Excursion",
+"price": 180,
+"rating": 4.5,
+"author": "Anonymous"
+}
+{
+"name": "Mountain Biking Adventure",
+"price": 200,
+"rating": 4.8,
+"author": "Anonymous"
+}
+{
+"name": "Sailing Trip",
+"price": 220,
+"rating": 4.9,
+"author": "Anonymous"
+}
+{
+"name": "Fishing Expedition",
+"price": 150,
+"rating": 4.3,
+"author": "Anonymous"
+}
+{
+"name": "Food Tasting Tour",
+"price": 90,
+"rating": 4.2,
+"author": "Anonymous"
+}
+{
+"name": "Photography Safari",
+"price": 280,
+"rating": 4.7,
+"author": "Anonymous"
+}
+{
+"name": "Skiing Adventure",
+"price": 280,
+"rating": 4.6,
+"author": "Anonymous"
+}
+{
+"name": "River Rafting Expedition",
+"price": 160,
+"rating": 4.4,
+"author": "Anonymous"
+}
+{
+"name": "Yoga Retreat",
+"price": 120,
+"rating": 4.0,
+"author": "Anonymous"
+}

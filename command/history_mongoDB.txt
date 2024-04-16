@@ -1,0 +1,650 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/): 27017
+27017
+Current Mongosh Log ID: 6617e9242507252a4816c9b4
+Connecting to:          mongodb://127.0.0.1:27017/27017?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.3
+Using MongoDB:          7.0.8
+Using Mongosh:          2.2.3
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2024-04-11T06:06:34.905+07:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+27017> db
+27017
+27017> db
+27017
+27017> admin
+ReferenceError: admin is not defined
+27017> db
+27017
+27017> db andya
+Uncaught:
+SyntaxError: Missing semicolon. (1:2)
+
+> 1 | db andya
+    |   ^
+  2 |
+
+27017> db.andya
+27017.andya
+27017> show dbs
+admin   40.00 KiB
+andya    8.00 KiB
+config  72.00 KiB
+local   40.00 KiB
+27017> use andya
+switched to db andya
+andya> db.tours.insertOne({ name : 'Forest Hiker', price : 297, rating 4.7})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:64)
+
+> 1 | db.tours.insertOne({ name : 'Forest Hiker', price : 297, rating 4.7})
+    |                                                                 ^
+  2 |
+
+andya> db.tours.insertOne({ name : 'Forest Hiker', price : 297, rating : 4.7})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6617ec7b2507252a4816c9b5')
+}
+andya> db.tours.find()
+[
+  {
+    _id: ObjectId('6617ec7b2507252a4816c9b5'),
+    name: 'Forest Hiker',
+    price: 297,
+    rating: 4.7
+  }
+]
+andya> show dbs
+admin    40.00 KiB
+andya    48.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+andya> show collections
+andya
+tours
+andya> show collections
+tours
+andya> db.tours.insertMany([{name : "The Sea Explorer", price : 497, rating : 4.8}, {name : "The Snow Adventurer", price: 557, rating : 4.2, difficulty "easy"}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:145)
+
+> 1 | db.tours.insertMany([{name : "The Sea Explorer", price : 497, rating : 4.8}, {name : "The Snow Adventurer", price:
+ 557, rating : 4.2, difficulty "easy"}])
+    |
+                               ^
+  2 |
+
+andya> db.tours.insertMany([{name : "The Sea Explorer", price : 497, rating : 4.8}, {name : "The Snow Adventurer", price: 557, rating : 4.2, difficulty : "easy"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6617efd82507252a4816c9b6'),
+    '1': ObjectId('6617efd82507252a4816c9b7')
+  }
+}
+andya> db.tours.find()
+[
+  {
+    _id: ObjectId('6617ec7b2507252a4816c9b5'),
+    name: 'Forest Hiker',
+    price: 297,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b6'),
+    name: 'The Sea Explorer',
+    price: 497,
+    rating: 4.8
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b7'),
+    name: 'The Snow Adventurer',
+    price: 557,
+    rating: 4.2,
+    difficulty: 'easy'
+  }
+]
+andya> db.tours.insertMany([
+...   { "name": "Jungle Trek", "price": 599, "rating": 4.5, "difficulty": "moderate" },
+...   { "name": "Mountain Expedition", "price": 799, "rating": 4.9, "difficulty": "hard" },
+...   { "name": "Desert Safari", "price": 449, "rating": 4.7 },
+...   { "name": "City Explorer", "price": 299, "rating": 4.3 },
+...   { "name": "Cultural Heritage Tour", "price": 399, "rating": 4.6 },
+...   { "name": "Northern Lights Adventure", "price": 899, "rating": 4.8, "difficulty": "challenging" },
+...   { "name": "Island Hopping", "price": 649, "rating": 4.4 },
+...   { "name": "Wine Tasting Tour", "price": 349, "rating": 4.7 },
+...   { "name": "Historical Landmarks Journey", "price": 479, "rating": 4.5 },
+...   { "name": "Wildlife Safari", "price": 699, "rating": 4.6, "difficulty": "moderate" }
+... ]
+... )
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6617f2b62507252a4816c9b8'),
+    '1': ObjectId('6617f2b62507252a4816c9b9'),
+    '2': ObjectId('6617f2b62507252a4816c9ba'),
+    '3': ObjectId('6617f2b62507252a4816c9bb'),
+    '4': ObjectId('6617f2b62507252a4816c9bc'),
+    '5': ObjectId('6617f2b62507252a4816c9bd'),
+    '6': ObjectId('6617f2b62507252a4816c9be'),
+    '7': ObjectId('6617f2b62507252a4816c9bf'),
+    '8': ObjectId('6617f2b62507252a4816c9c0'),
+    '9': ObjectId('6617f2b62507252a4816c9c1')
+  }
+}
+andya> db.tours.find()
+[
+  {
+    _id: ObjectId('6617ec7b2507252a4816c9b5'),
+    name: 'Forest Hiker',
+    price: 297,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b6'),
+    name: 'The Sea Explorer',
+    price: 497,
+    rating: 4.8
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b7'),
+    name: 'The Snow Adventurer',
+    price: 557,
+    rating: 4.2,
+    difficulty: 'easy'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b8'),
+    name: 'Jungle Trek',
+    price: 599,
+    rating: 4.5,
+    difficulty: 'moderate'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b9'),
+    name: 'Mountain Expedition',
+    price: 799,
+    rating: 4.9,
+    difficulty: 'hard'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9ba'),
+    name: 'Desert Safari',
+    price: 449,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bb'),
+    name: 'City Explorer',
+    price: 299,
+    rating: 4.3
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bc'),
+    name: 'Cultural Heritage Tour',
+    price: 399,
+    rating: 4.6
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bd'),
+    name: 'Northern Lights Adventure',
+    price: 899,
+    rating: 4.8,
+    difficulty: 'challenging'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9be'),
+    name: 'Island Hopping',
+    price: 649,
+    rating: 4.4
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bf'),
+    name: 'Wine Tasting Tour',
+    price: 349,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c0'),
+    name: 'Historical Landmarks Journey',
+    price: 479,
+    rating: 4.5
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c1'),
+    name: 'Wildlife Safari',
+    price: 699,
+    rating: 4.6,
+    difficulty: 'moderate'
+  }
+]
+andya> db.tours.find({ name : "The Forest Hiker"})
+
+andya> db.tours.find({ name : "The Sea Explorer"})
+[
+  {
+    _id: ObjectId('6617efd82507252a4816c9b6'),
+    name: 'The Sea Explorer',
+    price: 497,
+    rating: 4.8
+  }
+]
+andya> db.tours.find({ difficulty : "moderate"})
+[
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b8'),
+    name: 'Jungle Trek',
+    price: 599,
+    rating: 4.5,
+    difficulty: 'moderate'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c1'),
+    name: 'Wildlife Safari',
+    price: 699,
+    rating: 4.6,
+    difficulty: 'moderate'
+  }
+]
+andya> db.tours.find({price: {$lte : 550}})
+[
+  {
+    _id: ObjectId('6617ec7b2507252a4816c9b5'),
+    name: 'Forest Hiker',
+    price: 297,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b6'),
+    name: 'The Sea Explorer',
+    price: 497,
+    rating: 4.8
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9ba'),
+    name: 'Desert Safari',
+    price: 449,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bb'),
+    name: 'City Explorer',
+    price: 299,
+    rating: 4.3
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bc'),
+    name: 'Cultural Heritage Tour',
+    price: 399,
+    rating: 4.6
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bf'),
+    name: 'Wine Tasting Tour',
+    price: 349,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c0'),
+    name: 'Historical Landmarks Journey',
+    price: 479,
+    rating: 4.5
+  }
+]
+andya> db.tours.find({price: {$lt : 450}, rating : {$gte : 4.7} })
+[
+  {
+    _id: ObjectId('6617ec7b2507252a4816c9b5'),
+    name: 'Forest Hiker',
+    price: 297,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9ba'),
+    name: 'Desert Safari',
+    price: 449,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bf'),
+    name: 'Wine Tasting Tour',
+    price: 349,
+    rating: 4.7
+  }
+]
+andya> db.tours.find({ $or : [ {price : {$lt : 500}}, {rating : {$gte : 4.6}}] })
+[
+  {
+    _id: ObjectId('6617ec7b2507252a4816c9b5'),
+    name: 'Forest Hiker',
+    price: 297,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b6'),
+    name: 'The Sea Explorer',
+    price: 497,
+    rating: 4.8
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b9'),
+    name: 'Mountain Expedition',
+    price: 799,
+    rating: 4.9,
+    difficulty: 'hard'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9ba'),
+    name: 'Desert Safari',
+    price: 449,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bb'),
+    name: 'City Explorer',
+    price: 299,
+    rating: 4.3
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bc'),
+    name: 'Cultural Heritage Tour',
+    price: 399,
+    rating: 4.6
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bd'),
+    name: 'Northern Lights Adventure',
+    price: 899,
+    rating: 4.8,
+    difficulty: 'challenging'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bf'),
+    name: 'Wine Tasting Tour',
+    price: 349,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c0'),
+    name: 'Historical Landmarks Journey',
+    price: 479,
+    rating: 4.5
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c1'),
+    name: 'Wildlife Safari',
+    price: 699,
+    rating: 4.6,
+    difficulty: 'moderate'
+  }
+]
+andya> db.tours.find({ $or : [ {price : {$lt : 500}}, {rating : {$gte : 4.6}}] }, {name : 1})
+[
+  { _id: ObjectId('6617ec7b2507252a4816c9b5'), name: 'Forest Hiker' },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b6'),
+    name: 'The Sea Explorer'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b9'),
+    name: 'Mountain Expedition'
+  },
+  { _id: ObjectId('6617f2b62507252a4816c9ba'), name: 'Desert Safari' },
+  { _id: ObjectId('6617f2b62507252a4816c9bb'), name: 'City Explorer' },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bc'),
+    name: 'Cultural Heritage Tour'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bd'),
+    name: 'Northern Lights Adventure'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bf'),
+    name: 'Wine Tasting Tour'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c0'),
+    name: 'Historical Landmarks Journey'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c1'),
+    name: 'Wildlife Safari'
+  }
+]
+andya> db.tours.updateOne({name : 'Historical Landmarks Journey'}, { $set : { price : 1299} })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+andya> db.tours.find()
+[
+  {
+    _id: ObjectId('6617ec7b2507252a4816c9b5'),
+    name: 'Forest Hiker',
+    price: 297,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b6'),
+    name: 'The Sea Explorer',
+    price: 497,
+    rating: 4.8
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b7'),
+    name: 'The Snow Adventurer',
+    price: 557,
+    rating: 4.2,
+    difficulty: 'easy'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b8'),
+    name: 'Jungle Trek',
+    price: 599,
+    rating: 4.5,
+    difficulty: 'moderate'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b9'),
+    name: 'Mountain Expedition',
+    price: 799,
+    rating: 4.9,
+    difficulty: 'hard'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9ba'),
+    name: 'Desert Safari',
+    price: 449,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bb'),
+    name: 'City Explorer',
+    price: 299,
+    rating: 4.3
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bc'),
+    name: 'Cultural Heritage Tour',
+    price: 399,
+    rating: 4.6
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bd'),
+    name: 'Northern Lights Adventure',
+    price: 899,
+    rating: 4.8,
+    difficulty: 'challenging'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9be'),
+    name: 'Island Hopping',
+    price: 649,
+    rating: 4.4
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bf'),
+    name: 'Wine Tasting Tour',
+    price: 349,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c0'),
+    name: 'Historical Landmarks Journey',
+    price: 1299,
+    rating: 4.5
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c1'),
+    name: 'Wildlife Safari',
+    price: 699,
+    rating: 4.6,
+    difficulty: 'moderate'
+  }
+]
+andya> db.tours.find( {price : {$gte : 500}, rating : {$gte : 4.7} })
+[
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b9'),
+    name: 'Mountain Expedition',
+    price: 799,
+    rating: 4.9,
+    difficulty: 'hard'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bd'),
+    name: 'Northern Lights Adventure',
+    price: 899,
+    rating: 4.8,
+    difficulty: 'challenging'
+  }
+]
+andya> db.tours.updateMany( {price : { $gte : 500}, rating : {$gte : 4.7} }, { $set : {premium : true} } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+andya> db.tours.find()
+[
+  {
+    _id: ObjectId('6617ec7b2507252a4816c9b5'),
+    name: 'Forest Hiker',
+    price: 297,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b6'),
+    name: 'The Sea Explorer',
+    price: 497,
+    rating: 4.8
+  },
+  {
+    _id: ObjectId('6617efd82507252a4816c9b7'),
+    name: 'The Snow Adventurer',
+    price: 557,
+    rating: 4.2,
+    difficulty: 'easy'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b8'),
+    name: 'Jungle Trek',
+    price: 599,
+    rating: 4.5,
+    difficulty: 'moderate'
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b9'),
+    name: 'Mountain Expedition',
+    price: 799,
+    rating: 4.9,
+    difficulty: 'hard',
+    premium: true
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9ba'),
+    name: 'Desert Safari',
+    price: 449,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bb'),
+    name: 'City Explorer',
+    price: 299,
+    rating: 4.3
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bc'),
+    name: 'Cultural Heritage Tour',
+    price: 399,
+    rating: 4.6
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bd'),
+    name: 'Northern Lights Adventure',
+    price: 899,
+    rating: 4.8,
+    difficulty: 'challenging',
+    premium: true
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9be'),
+    name: 'Island Hopping',
+    price: 649,
+    rating: 4.4
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bf'),
+    name: 'Wine Tasting Tour',
+    price: 349,
+    rating: 4.7
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c0'),
+    name: 'Historical Landmarks Journey',
+    price: 1299,
+    rating: 4.5
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9c1'),
+    name: 'Wildlife Safari',
+    price: 699,
+    rating: 4.6,
+    difficulty: 'moderate'
+  }
+]
+andya> db.tours.find( {premium : true } )
+[
+  {
+    _id: ObjectId('6617f2b62507252a4816c9b9'),
+    name: 'Mountain Expedition',
+    price: 799,
+    rating: 4.9,
+    difficulty: 'hard',
+    premium: true
+  },
+  {
+    _id: ObjectId('6617f2b62507252a4816c9bd'),
+    name: 'Northern Lights Adventure',
+    price: 899,
+    rating: 4.8,
+    difficulty: 'challenging',
+    premium: true
+  }
+]
+andya>
