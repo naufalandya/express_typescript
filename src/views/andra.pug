@@ -1,0 +1,26 @@
+html
+  head
+    title Tours Page
+  body
+    h1 Tours
+    table
+      thead
+        tr
+          th Name
+          th Price
+          th Ratings Average
+          th Start Dates
+          th Description
+          th Summary
+      tbody
+        each tour in tours
+          tr
+            td= tour.name
+            td= tour.price
+            td= tour.ratingsAverage
+            td
+              ul
+                each date in tour.startDates
+                  li= date
+            td= tour.description
+            td= tour.summary

@@ -1,6 +1,6 @@
 import {Response, Request, NextFunction} from 'express';
 import Tour from '../model/tourModel';
-import { match } from 'assert';
+//import { match } from 'assert';
 //import { Console } from 'console';
 /*
 
@@ -117,14 +117,35 @@ class TourController {
 
             //limiting
 
-            if(typeof req.query.fields === 'string'){
-                const fields = req.query.fields.split('%').join(' ')
-                query = query.select(`${fields}`)
+            if (typeof req.query.fields === 'string') {
+                console.log(req.query.fields);
+                const fieldsToIgnore = ['instructor'];
+                const fields = req.query.fields
+                                .split('%')
+                                .filter(field => !fieldsToIgnore.includes(field))
+                                .join(' ');
+                query = query.select(`${fields}`);
             } else {
-                query =  query.select("-__v -instructor")
+                query = query.select("-__v -instructor");
             }
 
-            query = query.select('-instructor');
+            //pagination
+            const rqp : any = req.query.page
+            const page = rqp * 1 || 1
+
+            const rql : any = req.query.limit 
+            const limit = rql * 1 || 1
+
+            const skip = (page - 1) * limit
+            query = query.skip(skip).limit(limit)
+
+            if(req.query.page){
+                const numTours = await Tour.countDocuments()
+
+                if(skip >= numTours){
+                    throw new Error("Page does not exist")
+                }
+            }
 
             const tours = await query;
             // console.log(tours)

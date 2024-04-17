@@ -42,7 +42,6 @@ const tourSchema : Schema = new mongoose.Schema({
     instructor : {
         type : String,
         default : "Anonymous",
-        select:false
     },
 
     summary : {
