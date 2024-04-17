@@ -1,5 +1,6 @@
 import {Response, Request, NextFunction} from 'express';
 import Tour from '../model/tourModel';
+import APIfeatures from '../utils/apiFeatures';
 //import { match } from 'assert';
 //import { Console } from 'console';
 /*
@@ -34,6 +35,8 @@ interface TourInterface {
     createdAt: Date;
     startDates?: Date[];
 }
+
+
 
 class TourController {
     //private tours : Tour[]
@@ -86,68 +89,22 @@ class TourController {
     }
 
     }
+
+    async aliasTop5Tour(req: Request, res :Response, next : NextFunction) {
+        req.query.limit = '5'
+        req.query.sort = '-ratingsAverage%price'
+        req.query.fields = 'name%price%ratingsAverage%summary%difficulty'
+
+        next()
+    }
     
     async getAllTours(req : Request, res : Response, next : NextFunction) : Promise<void> {
         
         try {
-            //destruct requests
-            const ObjQuery : Record<string, any>  = {...req.query}
-            console.log(ObjQuery)
 
-            //separation 
-            const excludedFields : string[] = ['limit', 'page', 'sort', 'fields']
-            excludedFields.forEach((el : string)=> delete ObjQuery[el])
+            const features = new APIfeatures(Tour.find(), req.query).filter().sorting().fieldLimiting().pagination()
 
-            console.log(ObjQuery)
-            console.log(excludedFields)
-
-            //filter data
-            let queryStr : string = JSON.stringify(ObjQuery)
-            queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
-
-            let query = Tour.find(JSON.parse(queryStr));
-
-            //sorting
-            if (typeof req.query.sort === 'string') {
-                const sortBy = req.query.sort.split('%').join(' ')
-                query = query.sort(sortBy);
-            } else {
-                query = query.sort('-createdAt')
-            }
-
-            //limiting
-
-            if (typeof req.query.fields === 'string') {
-                console.log(req.query.fields);
-                const fieldsToIgnore = ['instructor'];
-                const fields = req.query.fields
-                                .split('%')
-                                .filter(field => !fieldsToIgnore.includes(field))
-                                .join(' ');
-                query = query.select(`${fields}`);
-            } else {
-                query = query.select("-__v -instructor");
-            }
-
-            //pagination
-            const rqp : any = req.query.page
-            const page = rqp * 1 || 1
-
-            const rql : any = req.query.limit 
-            const limit = rql * 1 || 1
-
-            const skip = (page - 1) * limit
-            query = query.skip(skip).limit(limit)
-
-            if(req.query.page){
-                const numTours = await Tour.countDocuments()
-
-                if(skip >= numTours){
-                    throw new Error("Page does not exist")
-                }
-            }
-
-            const tours = await query;
+            const tours = await features.query;
             // console.log(tours)
             res.status(200).json({
                 status : 'success',

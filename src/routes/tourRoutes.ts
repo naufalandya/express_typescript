@@ -2,6 +2,8 @@ import express, {Router} from 'express';
 import tourController from '../controllers/tourController';
 const tourRouter : Router = express.Router();
 
+tourRouter.route('/top-5-tours').get(tourController.aliasTop5Tour, tourController.getAllTours)
+
 tourRouter.param('id', tourController.checkId)
 
 tourRouter
@@ -21,6 +23,7 @@ export default tourRouter
 
 /*
 import {getAllTours, getTourById, createTours, updateTourById, deleteTourById} from '../controllers/tourController'
+import tourRouter from './../../dist/src/routes/tourRoutes.d';
 
 
 tourRouter
